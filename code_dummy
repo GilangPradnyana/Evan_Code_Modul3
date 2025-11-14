@@ -1,0 +1,295 @@
+/*
+ * Program C++ Sederhana untuk Mendemonstrasikan
+ * Operator Aritmatika Dasar
+ * Ini adalah contoh untuk Tugas Pendahuluan No. 2
+ * dari Modul 3 Pemrograman Dasar.
+ */
+
+// Menyertakan library iostream untuk operasi input-output (cin dan cout)
+#include <iostream>
+
+// Menggunakan namespace std agar tidak perlu menulis std::cout atau std::cin
+using namespace std;
+
+int main() {
+    // --- 1. Deklarasi Variabel ---
+    // Kita gunakan tipe 'double' untuk angka1 dan angka2 agar 
+    // bisa menerima angka desimal (pecahan).
+    double angka1, angka2;
+
+    // Kita gunakan tipe 'int' (integer) untuk operasi modulus
+    // karena modulus (%) hanya bekerja pada bilangan bulat.
+    int angkaBulat1, angkaBulat2;
+
+    // --- 2. Input dari User ---
+    cout << "--- Kalkulator Aritmatika Sederhana ---" << endl;
+    
+    // Meminta input untuk operasi standar (+, -, *, /)
+    cout << "Masukkan angka pertama (bisa desimal): ";
+    cin >> angka1;
+    cout << "Masukkan angka kedua (bisa desimal): ";
+    cin >> angka2;
+    
+    // Meminta input terpisah untuk operasi modulus (%)
+    cout << "\n--- Untuk Operasi Modulus (Sisa Bagi) ---" << endl;
+    cout << "Masukkan angka bulat pertama: ";
+    cin >> angkaBulat1;
+    cout << "Masukkan angka bulat kedua: ";
+    cin >> angkaBulat2;
+
+    // --- 3. Proses Perhitungan dan Output ---
+    cout << "\n================ HASIL ===============" << endl;
+
+    // + (Penjumlahan)
+    cout << "Penjumlahan : " << angka1 << " + " << angka2 << " = " << (angka1 + angka2) << endl;
+
+    // - (Pengurangan)
+    cout << "Pengurangan : " << angka1 << " - " << angka2 << " = " << (angka1 - angka2) << endl;
+
+    // * (Perkalian)
+    cout << "Perkalian   : " << angka1 << " * " << angka2 << " = " << (angka1 * angka2) << endl;
+
+    // / (Pembagian)
+    // Menampilkan hasil pembagian sebagai desimal
+    cout << "Pembagian   : " << angka1 << " / " << angka2 << " = " << (angka1 / angka2) << endl;
+
+    // % (Modulus atau Sisa Bagi)
+    // Hanya menggunakan variabel integer
+    cout << "Modulus     : " << angkaBulat1 << " % " << angkaBulat2 << " = " << (angkaBulat1 % angkaBulat2) << endl;
+    
+    cout << "=======================================" << endl;
+
+    // 'return 0' menandakan program selesai dengan sukses
+    return 0;
+}
+
+
+======================================================================================================================================================================
+======================================================================================================================================================================
+
+/*
+ * PROGRAM TUGAS MANDIRI 1 - Modul 3
+ * Nama     : [Silakan isi nama Anda]
+ * NIM      : [Silakan isi NIM Anda]
+ *
+ * Program ini menghitung tiga persamaan matematika berdasarkan
+ * satu input 'x' dari pengguna.
+ */
+
+// Library untuk input-output (cin, cout)
+#include <iostream>
+// Library untuk fungsi matematika, khususnya pow() (pangkat)
+#include <cmath>
+// Library untuk validasi input
+#include <limits>
+// Library untuk memformat output desimal
+#include <iomanip>
+
+// Menggunakan namespace standar C++
+using namespace std;
+
+int main() {
+    // --- 1. DEKLARASI VARIABEL ---
+
+    // 'double' digunakan agar 'x' bisa menampung angka desimal (pecahan).
+    double x; 
+    
+    // Variabel untuk menyimpan hasil persamaan 1 (juga double)
+    double hasil1;
+    
+    // Variabel integer khusus untuk persamaan 3 (modulus)
+    int x_bulat;
+    int hasil3;
+
+    // --- 2. INPUT DARI KEYBOARD (dengan Validasi) ---
+    
+    cout << "--- Program Perhitungan 3 Persamaan ---" << endl;
+    cout << "Masukkan nilai x (bisa desimal): ";
+
+    // Loop validasi: Terus meminta input jika yang dimasukkan BUKAN angka
+    while (!(cin >> x)) {
+        cout << "Input tidak valid. Harap masukkan sebuah ANGKA: ";
+        // 1. Bersihkan status error dari cin
+        cin.clear(); 
+        // 2. Abaikan sisa input yang salah di baris sebelumnya
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
+    }
+
+    // --- 3. PROSES PERHITUNGAN & OUTPUT ---
+    
+    // Mengatur output desimal agar menampilkan 2 angka di belakang koma
+    cout << fixed << setprecision(2);
+    
+    cout << "\n================ HASIL ===============" << endl;
+    cout << "Untuk nilai x = " << x << endl;
+    cout << "----------------------------------------" << endl;
+
+    // --- Persamaan 1: -2x³ + x² - 6 ---
+    // Menggunakan fungsi pow(basis, pangkat) dari <cmath>
+    
+    hasil1 = (-2 * pow(x, 3)) + (pow(x, 2)) - 6;
+    
+    cout << "1. Hasil -2x^3 + x^2 - 6 \t= " << hasil1 << endl;
+
+    // --- Persamaan 2: -(x+x) / (x-x) ---
+    // Ini adalah kasus khusus: Pembagian dengan Nol (Divide by Zero).
+    // Penyebut (x-x) akan SELALU bernilai 0.
+    // Kita tidak boleh menghitungnya, jadi kita langsung beri keterangan.
+    
+    cout << "2. Hasil -(x+x) / (x-x) \t= TIDAK TERDEFINISI" << endl;
+    cout << "   (Alasan: Terjadi pembagian dengan nol)" << endl;
+
+
+    // --- Persamaan 3: x mod 2 ---
+    // Ini kasus khusus: Operator Modulus (%) hanya untuk INTEGER.
+    // Kita harus mengubah 'x' (double) menjadi 'int' terlebih dahulu.
+    
+    // 1. Casting 'x' menjadi integer (bagian desimal akan dipotong)
+    x_bulat = (int)x;
+    
+    // 2. Lakukan operasi modulus (%) pada versi integer-nya
+    hasil3 = x_bulat % 2;
+    
+    cout << "3. Hasil x mod 2 \t\t= " << hasil3 << endl;
+    cout << "   (Dihitung sebagai: " << x_bulat << " % 2)" << endl;
+
+    cout << "=======================================" << endl;
+
+    // return 0 menandakan program selesai dengan sukses
+    return 0; 
+}
+
+======================================================================================================================================================================
+======================================================================================================================================================================
+
+/*
+ * PROGRAM TUGAS MANDIRI 2 - Modul 3 (Versi Sederhana)
+ * Program ini menentukan nilai huruf (A, B, C, D, E) berdasarkan
+ * nilai UTS dan UAS.
+ */
+
+// Hanya butuh iostream untuk input dan output
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    // --- 1. DEKLARASI VARIABEL ---
+    float nilaiUTS, nilaiUAS;
+    char nilaiHuruf;
+
+    // --- 2. INPUT DARI KEYBOARD ---
+    
+    cout << "--- Program Penentuan Nilai Huruf ---" << endl;
+    
+    cout << "Masukkan Nilai UTS: ";
+    cin >> nilaiUTS; // Input sederhana
+    
+    cout << "Masukkan Nilai UAS: ";
+    cin >> nilaiUAS; // Input sederhana
+
+    // --- 3. PROSES PENENTUAN NILAI (LOGIKA IF-ELSE IF) ---
+    
+    // Kita cek dari syarat tertinggi (A) ke terendah (E).
+    // Operator && (DAN) berarti KEDUA kondisi harus terpenuhi.
+
+    if (nilaiUTS >= 85 && nilaiUAS >= 85) {
+        nilaiHuruf = 'A';
+    } 
+    // Jika tidak, cek kondisi B
+    else if (nilaiUTS >= 70 && nilaiUAS >= 70) {
+        nilaiHuruf = 'B';
+    } 
+    // Jika tidak, cek kondisi C
+    else if (nilaiUTS >= 55 && nilaiUAS >= 55) {
+        nilaiHuruf = 'C';
+    } 
+    // Jika tidak, cek kondisi D
+    else if (nilaiUTS >= 40 && nilaiUAS >= 40) {
+        nilaiHuruf = 'D';
+    } 
+    // 'else' ini akan menangkap SEMUA KASUS LAINNYA
+    // (termasuk yang UTS < 40, atau salah satu nilai kecil)
+    else {
+        nilaiHuruf = 'E';
+    }
+
+    // --- 4. TAMPILKAN HASIL ---
+    
+    cout << "\n================ HASIL ===============" << endl;
+    cout << "Nilai UTS Anda: " << nilaiUTS << endl;
+    cout << "Nilai UAS Anda: " << nilaiUAS << endl;
+    cout << "----------------------------------------" << endl;
+    
+    // Langsung tampilkan nilai huruf, karena sudah pasti A/B/C/D/E
+    cout << "Nilai Huruf Anda adalah: " << nilaiHuruf << endl;
+    
+    cout << "=======================================" << endl;
+
+    return 0; // Program selesai
+}
+
+======================================================================================================================================================================
+======================================================================================================================================================================
+
+
+/*
+ * PROGRAM TUGAS MANDIRI 3 - Modul 3 (Versi Sederhana)
+ * Program ini menggunakan operator pointer (& dan *)
+ * untuk menampilkan nilai dan alamat memori dari variabel.
+ */
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    // --- 1. DEKLARASI VARIABEL ---
+    
+    // Variabel biasa
+    int x = 10;
+    int y = 20;
+
+    // Variabel pointer (ditandai dengan *)
+    // ptr_x akan menyimpan ALAMAT dari variabel x
+    // ptr_y akan menyimpan ALAMAT dari variabel y
+    int *ptr_x;
+    int *ptr_y;
+
+    // --- 2. PENGERJAAN (Assignment) POINTER ---
+    
+    // Gunakan operator & (address-of) untuk mendapatkan alamat 'x'
+    // dan simpan alamat itu ke 'ptr_x'
+    ptr_x = &x; 
+    
+    // Lakukan hal yang sama untuk y
+    ptr_y = &y;
+
+    // --- 3. TAMPILKAN HASIL ---
+    
+    cout << "--- Program Operator Pointer ---" << endl;
+    
+    cout << "\n--- Variabel x ---" << endl;
+    // Tampilkan nilai x
+    cout << "Nilai x \t\t: " << x << endl; 
+    // Tampilkan alamat x (Alamat memori akan berbeda di tiap komputer)
+    cout << "Alamat x (&x) \t\t: " << &x << endl;
+    // Tampilkan alamat yang disimpan oleh pointer
+    cout << "Isi ptr_x \t\t: " << ptr_x << endl; 
+    // Tampilkan nilai yang ditunjuk pointer (dereference)
+    cout << "Nilai (*ptr_x) \t\t: " << *ptr_x << endl; 
+
+    cout << "\n--- Variabel y ---" << endl;
+    // Tampilkan nilai y
+    cout << "Nilai y \t\t: " << y << endl;
+    // Tampilkan alamat y
+    cout << "Alamat y (&y) \t\t: " << &y << endl;
+    // Tampilkan alamat yang disimpan oleh pointer
+    cout << "Isi ptr_y \t\t: " << ptr_y << endl;
+    // Tampilkan nilai yang ditunjuk pointer (dereference)
+    cout << "Nilai (*ptr_y) \t\t: " << *ptr_y << endl;
+
+    cout << "\n================================" << endl;
+
+    return 0; // Program selesai
+}
